@@ -8,6 +8,7 @@ var wechat = require('wechat');
 var configjson = require('./config/config.json');
 var searchCloud = require('./models/search.js');
 var users = require('./models/users.js');
+
 var app = module.exports= express();
 
 var config = {
@@ -37,7 +38,7 @@ app.use('/wechat', wechat(config, function (req, res, next) {
         break;
       case "text":
         searchCloud.search(message.Content,function(resString){
-          res.reply(resString+configjson.psStr);
+          res.reply(resString+((message.FromUserName.valueOf()==configjson.lyid.valueOf())?configjson.psStr:""));
         });
     }
     

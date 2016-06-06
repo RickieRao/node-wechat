@@ -69,6 +69,9 @@ var parseGetResultArr = function(htmlString){
 
 var cutResult = function(resultArray){
 	var returnArr = [];
+	if(resultArray.length<=returnLength){
+		return resultArray;
+	}
 	for( i = 0; i < returnLength; i++){
 		returnArr.push(resultArray[i]);
 	}
